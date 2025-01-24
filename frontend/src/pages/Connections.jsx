@@ -22,13 +22,13 @@ function Connections() {
 
     useEffect(() => {
         fetchConnections();
-    }, []);
+    }, [connections.length]);
 
     if (!connections) return <>Loading...</>;
     if (connections.length === 0) return <>No Connections Found</>;
 
     return (
-        <div className='flex flex-col gap-5  mt-5 p-5 '>
+        <div className='flex flex-col gap-5  mt-5 p-5 pb-60 '>
             <h1 className='text-bold text-2xl flex justify-center'>Connections</h1>
             {connections.map((connection, index) => {
                 const { firstName, lastName, photoUrl,aboutMe } = connection;

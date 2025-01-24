@@ -61,11 +61,12 @@ function NavBar() {
                             <li>
                                 <span className="justify-between">
                                     {userDetails.firstName || 'Guest'}
-                                    <span className="badge">New</span>
+                                    {/* <span className="badge">New</span> */}
                                 </span>
                             </li>
                             <li><Link to="/profile">Profile</Link></li>
-                            <li><Link to="/connections">Connections</Link></li>
+                            <li><Link to="/connections">Connected</Link></li>
+                            <li><Link to="/requests">Requests Recived</Link></li>
                             <li onClick={handleLogout}><Link to="/login">Logout</Link></li>
                         </ul>
                     </div>

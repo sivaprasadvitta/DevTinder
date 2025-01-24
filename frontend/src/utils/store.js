@@ -3,6 +3,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import userReducer from './userSlice';
 import feedReducer from './feedSlice';
+import connectionReducer from './connectionSlice'
 
 // Persist configuration
 const persistConfig = {
@@ -14,6 +15,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   feed: feedReducer,
+  connection:connectionReducer
 });
 
 // Persist the combined reducers

@@ -65,6 +65,7 @@ function NavBar() {
                                 </span>
                             </li>
                             <li><Link to="/profile">Profile</Link></li>
+                            <li><Link to="/connections">Connections</Link></li>
                             <li onClick={handleLogout}><Link to="/login">Logout</Link></li>
                         </ul>
                     </div>

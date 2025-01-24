@@ -27,7 +27,7 @@ function Login() {
           withCredentials:true,
         }
       )
-      console.log(response.data[0])
+      // console.log(response.data[0])
       dispatch(addUser(response.data[0]))
       navigate('/')
 

@@ -46,14 +46,15 @@ const userSchema = new mongoose.Schema({
     },
     photoUrl:{
         type:String,
-        default:" https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png.",
+        default:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH0xuC8da1DdVU94AEl9PXOXWnAeRilZEpiw&s",
     },
     aboutMe:{
         type:String,
         default:"write about yourself",
     },
     skills:{
-        type:[String],
+        type:String,
+        default:"coding,Programming"
     },
     
 },{timestamps:true});

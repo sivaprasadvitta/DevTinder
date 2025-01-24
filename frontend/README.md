@@ -21,5 +21,7 @@
 - make protected routes using token
 - if not token in cockies and expired then redirect to login
 - Logout
-- Profile
-
+- get the feed data and add it to the store
+- built user card of feed
+- Edit Profile Feture
+- Show Toast Message

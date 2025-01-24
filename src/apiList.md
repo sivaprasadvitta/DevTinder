@@ -27,3 +27,15 @@ Status: ignore ,interset,accepted,rejected...
 core api is getting feed list of profile that appers in homepage -28 profile for tinder
 
 - GET /user/feed
+- Logic for Get.feed API 
+- Explore the $nin, $and, $ne and other Query operators
+
+- Pagination 
+/feed?page=1&limit=10 =>first 10 users 1-10 .skip(0) & limit(10)
+
+/feed?page=2&limit=10 => 11-20 .skip(10) & .limit(10)
+- .skip() method
+- .limit() method
+
+- skip = (page-1) * limit
+

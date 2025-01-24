@@ -1,6 +1,7 @@
 import express from "express";
 import ConnectionRequest from "../models/connectionRequest.js";
 import userAuth from "../middlewares/auth.js";
+import User from "../models/user.js";
 
 
 const userRouter = express.Router();
@@ -62,6 +63,50 @@ userRouter.get('/user/connections', userAuth, async (req, res) => {
         res.status(500).send(`ERROR: ${error.message}`);
     }
 });
+
+// feed
+userRouter.get('/feed',userAuth,async(req,res)=>{
+    try{
+        // user see all cards expcepr
+        // 0. own card
+        // 1. his connections
+        // 2. people already ignore
+        // 3. already send the request
+
+        const loggedInUser = req.user;
+
+        const page = parseInt(req.query.page) || 1;
+        let limit = parseInt(req.query.limit) || 10;
+        limit = limit > 50 ?50 :limit;
+        
+        const skip = (page-1)*limit;
+
+        const connectionRequests = await ConnectionRequest.find({
+            $or:[{fromUserId:loggedInUser._id},{toUserId:loggedInUser._id}]
+        }).select("fromUserId toUserId");
+
+        const hideUserFromFeed = new Set();
+
+        connectionRequests.forEach((req)=>{
+            hideUserFromFeed.add(req.fromUserId.toString());
+            hideUserFromFeed.add(req.toUserId.toString());
+        });
+
+        console.log(hideUserFromFeed);
+
+        const users = await User.find({
+            $and:[
+                {_id:{$nin: Array.from(hideUserFromFeed)}},
+                {_id:{$ne:loggedInUser._id}},
+            ]
+        }).select(SAFE_DATA).skip(skip).limit(limit)
+
+        res.send(users);
+
+    }catch(error){
+        res.send(401).json({message:error.message})
+    }
+})
 
 
 

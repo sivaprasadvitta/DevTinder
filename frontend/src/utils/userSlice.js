@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
     name: "user",
-    initialState: [], // Change this to an empty array
+    initialState: null, // Change this to an empty array
     reducers: {
         addUser: (state, action) => {
             return [action.payload]; // Wrap payload in an array

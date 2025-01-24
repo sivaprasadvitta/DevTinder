@@ -12,8 +12,8 @@ import store from '../utils/store'
 function Body() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userData = useSelector(store => store.user[0])
-  console.log(userData)
+  const userData = useSelector(store => store.user)
+  // console.log(userData)
 
   const fetchProfile = async()=>{
     // console.log("Body")

@@ -36,27 +36,15 @@ export const validateProfileEditData = (req) => {
         "gender",
         "age",
     ];
-    
-    
-    // we also check no of skills,
-    // if (req.body.skills.length > 10) {
-    //     throw new Error("Skills should be less than 10");
-    // }
 
-    // if (!validator.isURL(req.body.photoUrl)) {
-    //     throw new Error(`Invalid photo url: ${req.body.photoUrl}`);
-    // }
-    // check about me
-
-
-    const isUpdateAllowed = Object.keys(req.body).every((field) =>
+    // Check if at least one field in the request body is allowed
+    const isUpdateAllowed = Object.keys(req.body).some((field) =>
         allowedUpdates.includes(field)
     );
 
     return isUpdateAllowed;
-
-    
 };
+
 
 export const validateConnectionRequest = async (fromUserId,toUserId,status) => {
     console.log(status,toUserId,fromUserId);

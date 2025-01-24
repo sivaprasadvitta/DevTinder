@@ -3,6 +3,7 @@ import userAuth from "../middlewares/auth.js";
 import  {validateProfileEditData}  from "../utils/validation.js";
 import bcrypt from "bcryptjs";
 import validator from "validator";
+import { data } from "react-router-dom";
 
 
 const profileRouter = express.Router();
@@ -20,27 +21,41 @@ profileRouter.get('/profile',userAuth,async (req,res)=>{
 
 // update profile
 profileRouter.patch('/profile/edit', userAuth, async (req, res) => {
+    const allowedUpdates = [
+        "firstName",
+        "lastName",
+        "photoUrl",
+        "aboutMe",
+        "skills",
+        "gender",
+        "age",
+    ];
+    
     try {
         // Validate profile data
         const isUpdateAllowed = validateProfileEditData(req);
 
         if (!isUpdateAllowed) {
-            return res.status(400).send({ message: "Invalid updates" });
+            return res.status(400).send({ message: "Invalid updates. No valid fields provided." });
         }
 
         const loginUser = req.user;
 
+        // Update only allowed fields
         Object.keys(req.body).forEach((key) => {
-            loginUser[key] = req.body[key];
+            if (allowedUpdates.includes(key)) {
+                loginUser[key] = req.body[key];
+            }
         });
 
         await loginUser.save();
 
-        res.status(200).json({ message: "Profile updated successfully", user: loginUser });
+        res.status(200).json({ message: "Profile updated successfully", data: loginUser });
     } catch (error) {
         res.status(500).send({ error: `ERROR: ${error.message}` });
     }
 });
+
 
 // update password
 profileRouter.patch('/profile/password', userAuth, async (req, res) => {

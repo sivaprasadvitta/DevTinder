@@ -25,4 +25,5 @@
 - built user card of feed
 - Edit Profile Feture
 - Show Toast Message
-- See all my connections
+- See all my connections created connection requests
+- See all my requests recvied

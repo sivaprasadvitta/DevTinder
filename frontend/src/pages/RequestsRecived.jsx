@@ -34,7 +34,7 @@ function RequestsRecived() {
         fetchRequests();
     }, []);
 
-    if (!requests) return <div className='flex justify-center mt-5 text-lg'>Loading...</div>;
+    if (!requests) return <span className="loading loading-bars loading-lg"></span>
     if (requests.length === 0) return <div className='flex justify-center mt-5 text-lg'>No Requests Found...</div>;
 
     return (

@@ -119,7 +119,7 @@ function EditProfile() {
                             {errorMessage && <p className="text-red-700">{errorMessage.message || errorMessage}</p>}
                             <button
                                 onClick={handleEditProfile}
-                                className="btn btn-active btn-accent ml-[10.4rem] px-5 mt-3">
+                                className="btn btn-active btn-accent ml-[13.4rem] px-7 mt-[1.8rem] hover:bg-gray-700 hover:text-white shadow-black">
                                 Submit
                             </button>
                         </label>

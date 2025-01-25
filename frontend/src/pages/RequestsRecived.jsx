@@ -11,7 +11,10 @@ function RequestsRecived() {
 
     const handleRequest = async (status, _id) => {
         try {
-            const response = await axios.post(BASE_URL + "/request/review/" + status + "/" + _id, {}, { withCredentials: true });
+            const response = await axios.post(BASE_URL + "/request/review/" + status + "/" + _id,
+                {}, 
+                { withCredentials: true }
+            );
             dispatch(removeRequests(_id)); // Dispatch removeRequests
         } catch (error) {
             console.log(error.message);
@@ -31,8 +34,8 @@ function RequestsRecived() {
         fetchRequests();
     }, []);
 
-    if (!requests) return <>Loading...</>;
-    if (requests.length === 0) return <>No Requests Found</>;
+    if (!requests) return <div className='flex justify-center mt-5 text-lg'>Loading...</div>;
+    if (requests.length === 0) return <div className='flex justify-center mt-5 text-lg'>No Requests Found...</div>;
 
     return (
         <div className="flex flex-col gap-5 mt-5 p-5 pb-60">

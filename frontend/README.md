@@ -27,3 +27,9 @@
 - Show Toast Message
 - See all my connections created connection requests
 - See all my requests recvied
+- Feture -Accept/Reject Connection request
+
+Remaining
+- Send/ignore the user card from Feed
+- Signup new user
+- E2E Testing

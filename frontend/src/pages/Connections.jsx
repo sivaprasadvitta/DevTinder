@@ -24,8 +24,8 @@ function Connections() {
         fetchConnections();
     }, [connections.length]);
 
-    if (!connections) return <>Loading...</>;
-    if (connections.length === 0) return <>No Connections Found</>;
+    if (!connections) return <div className='flex justify-center mt-5 text-lg'>Loading...</div>;
+    if (connections.length === 0) return <div className='flex justify-center mt-5 text-lg'>No Connections Found</div>;
 
     return (
         <div className='flex flex-col gap-5  mt-5 p-5 pb-60 '>

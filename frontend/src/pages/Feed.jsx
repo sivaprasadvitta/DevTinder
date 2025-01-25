@@ -37,9 +37,11 @@ function Feed() {
   },[])
 
   if(!user) navigator('/')
+  
+  if(!feed) return;
   // Handle empty feed gracefully
-  if (!feed || feed.length === 0) {
-    return <div>Loading feed...</div>;
+  if (feed.length <= 0) {
+    return <div className='flex justify-center mt-5 text-lg'>No New User Found...</div>;
   }
 
   return (

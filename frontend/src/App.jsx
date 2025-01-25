@@ -18,8 +18,8 @@ function App() {
         <BrowserRouter basename="/">
           <Routes>
             <Route path="/" element={<Body />}> {/* Parent - Body */}
-              <Route path="/" element={<Feed />} /> {/* Default child - Feed */}
               <Route path="/login" element={<Login />} /> {/* Child-1 - Login */}
+              <Route path="/" element={<Feed />} /> {/* Default child - Feed */}
               <Route path="/profile" element={<Profile />} /> {/* Child-2 - Profile */}
               <Route path="/connections" element={<Connections/>} /> {/* Child-3 - who are already conectedConnections page */}
               <Route path="/requests" element={<RequestsRecived />} /> {/* Child-4 - requests  */}

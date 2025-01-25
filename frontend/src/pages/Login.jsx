@@ -75,6 +75,7 @@ function Login() {
   };
 
   useEffect(() => {
+    if(!user) return;
     if (user.length == 1) navigate('/')
   }, [])
 

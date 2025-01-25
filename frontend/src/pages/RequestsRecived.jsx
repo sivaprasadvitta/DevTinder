@@ -7,7 +7,7 @@ import { addRequests, removeRequests } from '../utils/requestSlice';
 function RequestsRecived() {
     const dispatch = useDispatch();
     const requests = useSelector((state) => state.requests); // Correctly use useSelector
-    console.log("Requests in Component:", requests);
+    // console.log("Requests in Component:", requests);
 
     const handleRequest = async (status, _id) => {
         try {

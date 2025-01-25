@@ -8,7 +8,7 @@ function Connections() {
     const dispatch = useDispatch();
     const connections = useSelector(store => store.connection);
     // console.log(connections);
-
+    // if(connections) return;
     const fetchConnections = async () => {
         try {
             const response = await axios(BASE_URL + "/user/connections", {

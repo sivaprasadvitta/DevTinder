@@ -16,7 +16,7 @@ function Login() {
   const firstName = useRef();
   const lastName = useRef();
 
-  const [isSignUp, setIsSignUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignUp = async () => {
@@ -40,7 +40,7 @@ function Login() {
         withCredentials: true
       })
       console.log(response.data)
-      navigate('/login')
+      setIsSignUp(false)
 
     } catch (error) {
       setErrorMessage(error?.response?.data || "Something Went Wrong");
@@ -49,8 +49,8 @@ function Login() {
   }
 
   const handleLogin = async () => {
-    const emailValue = email.current.value;
-    const passwordValue = password.current.value;
+    const emailValue = email.current.value; // || "siva11@gmail.com"
+    const passwordValue = password.current.value ; // || "Siv@03123"
     // console.log('Email:', emailValue);
     // console.log('Password:', passwordValue);
 
@@ -65,7 +65,7 @@ function Login() {
       )
       // console.log(response.data[0])
       dispatch(addUser(response.data[0]))
-      setIsSignUp(false)
+      navigate('/')
 
     } catch (error) {
       // console.log(error.response.data)

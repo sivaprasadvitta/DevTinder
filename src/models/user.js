@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema({
     },
     skills:{
         type:String,
-        default:"coding,Programming"
+        default:"Coding,Programming"
     },
     
 },{timestamps:true});

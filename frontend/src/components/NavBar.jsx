@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
 import { removeUser } from '../utils/userSlice';
+import { removeFeed } from '../utils/feedSlice';
 
 function NavBar() {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function NavBar() {
                 withCredentials: true,
             });
             dispatch(removeUser());
+            dispatch(removeFeed())
             navigate('/login');
         } catch (error) {
             console.error('Logout failed:', error);

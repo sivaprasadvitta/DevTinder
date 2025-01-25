@@ -32,7 +32,7 @@ function EditProfile() {
                 { firstName, lastName, age, photoUrl, skills, aboutMe },
                 { withCredentials: true }
             );
-            console.log(response.data);
+            // console.log(response.data);
             // Dispatch and navigate after successful API call
             dispatch(addUser(response?.data?.data));
             setToast(true);
@@ -59,7 +59,7 @@ function EditProfile() {
             <div className="flex my-20 justify-between">
                 <div className="card bg-neutral-content text-black w-[35%] ml-40 ">
                     <div className="card-body flex gap-1">
-                        <h2 className="text-xl">Edit Profile</h2>
+                        <h2 className="text-xl flex justify-center -ml-5">Edit Profile</h2>
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text text-black">FirstName</span>

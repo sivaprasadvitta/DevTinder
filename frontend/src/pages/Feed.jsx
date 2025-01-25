@@ -10,12 +10,12 @@ import { useNavigate } from 'react-router-dom';
 function Feed() {
   const dispatch = useDispatch();
   const navigator = useNavigate();
-  const user = useSelector(store => store.user[0])
+  const user = useSelector(store => store.user)
+  if(!user) navigator('/')
   const feed = useSelector(store => store?.feed);
-  if(!feed) return;
+  // if(!feed) return;
     
   const getFeed = async()=>{
-    // if (feed.length > 0) return;
     try{
       const response = await axios.get(BASE_URL+'/feed',{
         withCredentials:true,
@@ -32,13 +32,11 @@ function Feed() {
   }
 
   useEffect(()=>{
-    // console.log("Feed is called")
     getFeed()
   },[])
 
-  if(!user) navigator('/')
   
-  if(!feed) return;
+  
   // Handle empty feed gracefully
   if (feed.length <= 0) {
     return <div className='flex justify-center mt-5 text-lg'>No New User Found...</div>;

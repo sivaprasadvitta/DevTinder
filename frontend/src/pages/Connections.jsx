@@ -7,7 +7,7 @@ import { addConnections } from '../utils/connectionSlice';
 function Connections() {
     const dispatch = useDispatch();
     const connections = useSelector(store => store.connection);
-    console.log(connections);
+    // console.log(connections);
 
     const fetchConnections = async () => {
         try {
@@ -22,7 +22,7 @@ function Connections() {
 
     useEffect(() => {
         fetchConnections();
-    }, [connections.length]);
+    }, []);
 
     if (!connections) return <div className='flex justify-center mt-5 text-lg'>Loading...</div>;
     if (connections.length === 0) return <div className='flex justify-center mt-5 text-lg'>No Connections Found</div>;

@@ -6,16 +6,17 @@ import { addFeed,removeFeed } from '../utils/feedSlice';
 import store from '../utils/store';
 import UserCard from '../components/UserCard'
 import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 function Feed() {
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const user = useSelector(store => store.user)
-  if(!user){
-    // dispatch(removeFeed())
-    navigator('/')
-  } 
   const feed = useSelector(store => store?.feed);
+
+  const token = Cookies.get("token");
+
+  
     
   const getFeed = async()=>{
     try{
@@ -28,13 +29,13 @@ function Feed() {
       if (error.response) {
         console.error('Error Response:', error.response.data);
       } else {
-        console.error('Error Message:', error.message); // Fallback for undefined response
+        console.error('Error Message:', error.message); 
       }
     }
   }
 
   useEffect(()=>{
-    if(feed == null) navigator('/login')
+    if(token == undefined) navigator('/login')
     getFeed()
   },[])
 

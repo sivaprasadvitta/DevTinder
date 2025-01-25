@@ -50,7 +50,7 @@ function Login() {
 
   const handleLogin = async () => {
     const emailValue = email.current.value; // || "siva11@gmail.com"
-    const passwordValue = password.current.value ; // || "Siv@03123"
+    const passwordValue = password.current.value; // || "Siv@03123"
     // console.log('Email:', emailValue);
     // console.log('Password:', passwordValue);
 

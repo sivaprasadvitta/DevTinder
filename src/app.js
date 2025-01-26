@@ -23,10 +23,16 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(cors({
-    origin:"https://devtinder-kroy.onrender.com",
-    credentials:true
-}))
+    origin: "https://devtinder-kroy.onrender.com", // Frontend URL
+    credentials: true,              // Allows credentials (cookies, etc.)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Allow necessary headers
+}));
+
+// Preflight requests (optional, ensures all routes handle CORS properly)
+app.options('*', cors()); 
 
 
 app.use('/',authRouter);

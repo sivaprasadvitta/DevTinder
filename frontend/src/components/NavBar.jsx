@@ -34,9 +34,6 @@ function NavBar() {
                 <div className="flex-1">
                     <Link to="/" className="btn btn-ghost text-xl">DevTinder</Link>
                 </div>
-                {/* <div className="flex-none gap-2">
-                    <Link to="/login" className="btn btn-primary">Login</Link>
-                </div> */}
             </div>
         );
     }
@@ -63,7 +60,6 @@ function NavBar() {
                             <li>
                                 <span className="justify-between text-xl">
                                     {userDetails.firstName || 'Guest'}
-                                    {/* <span className="badge">New</span> */}
                                 </span>
                             </li>
                             <li><Link to="/profile">Profile</Link></li>

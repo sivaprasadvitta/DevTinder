@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants';
 import UserCard from './UserCard';
 import store from '../utils/store';
@@ -10,7 +9,6 @@ import ProfileCard from './ProfileCard';
 
 function EditProfile() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const user = useSelector((store) => store?.user[0]);
     // console.log(user)
 
@@ -32,14 +30,12 @@ function EditProfile() {
                 { firstName, lastName, age, photoUrl, skills, aboutMe },
                 { withCredentials: true }
             );
-            // console.log(response.data);
             // Dispatch and navigate after successful API call
             dispatch(addUser(response?.data?.data));
             setToast(true);
             setTimeout(()=>{
                 setToast(false)
             },2000)
-            //   navigate('/');
         } catch (error) {
             setErrorMessage(
                 error?.response?.data?.error ||

@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "http://localhost:5173", // Frontend URL
+    origin: "https://devtinder-kroy.onrender.com", // Frontend URL
     credentials: true,              // Allows credentials (cookies, etc.)
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'] // Allow necessary headers

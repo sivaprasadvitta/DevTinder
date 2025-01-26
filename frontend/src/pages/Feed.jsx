@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { BASE_URL } from '../utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFeed } from '../utils/feedSlice';
-import store from '../utils/store';
 import UserCard from '../components/UserCard';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -11,8 +10,8 @@ import Cookies from 'js-cookie';
 function Feed() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
-  const feed = useSelector((state) => state?.feed);
+  const user = useSelector((state) => state?.user); // Get user from state
+  const feed = useSelector((state) => state?.feed); // Get feed from state
 
   // Retrieve the token from cookies
   const token = Cookies.get('token');
@@ -32,11 +31,15 @@ function Feed() {
   // Effect to check authentication and fetch feed
   useEffect(() => {
     if (!token) {
-      navigate('/login');
-    } else {
+      navigate('/login'); // Redirect to login if no token
+      return;
+    }
+
+    // Only fetch feed if user exists and is non-empty
+    if (user && user.length > 0) {
       getFeed();
     }
-  }, [token, navigate]);
+  }, [token, navigate, user]);
 
   // Handle empty or undefined feed
   if (!feed || feed.length === 0) {

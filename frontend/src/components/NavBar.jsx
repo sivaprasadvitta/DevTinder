@@ -5,6 +5,8 @@ import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
 import { removeUser } from '../utils/userSlice';
 import { removeFeed } from '../utils/feedSlice';
+import { removeConnections } from '../utils/connectionSlice';
+import { removeRequests } from '../utils/requestSlice';
 
 function NavBar() {
     const dispatch = useDispatch();
@@ -21,6 +23,8 @@ function NavBar() {
             });
             dispatch(removeUser());
             dispatch(removeFeed())
+            dispatch(removeConnections())
+            dispatch(removeRequests())
             navigate('/login');
         } catch (error) {
             console.error('Logout failed:', error);

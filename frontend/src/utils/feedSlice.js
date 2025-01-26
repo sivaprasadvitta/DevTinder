@@ -12,7 +12,7 @@ const feedSlice = createSlice({
             return newFeed
         },
         removeFeed:(state,action)=>{
-            return null
+            return []
         }
 
     }

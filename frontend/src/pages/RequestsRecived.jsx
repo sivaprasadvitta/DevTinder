@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
 import { addRequests, removeRequests } from '../utils/requestSlice';
+import store from '../utils/store';
 
 function RequestsRecived() {
     const dispatch = useDispatch();
     const requests = useSelector((state) => state.requests); // Correctly use useSelector
     // console.log("Requests in Component:", requests);
+    const user = useSelector(store => store.user)
 
     const handleRequest = async (status, _id) => {
         try {
@@ -22,9 +24,12 @@ function RequestsRecived() {
     };
 
     const fetchRequests = async () => {
+        if(!user) return;
         try {
             const response = await axios.get(BASE_URL + "/user/requests/received", { withCredentials: true });
-            dispatch(addRequests(response.data.result)); // Dispatch addRequests
+            if (response.data?.result) {
+                dispatch(addRequests(response.data.result)); // Dispatch requests to Redux
+            }
         } catch (error) {
             console.log(error.message);
         }

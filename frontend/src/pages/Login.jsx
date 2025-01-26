@@ -75,8 +75,11 @@ function Login() {
   };
 
   useEffect(() => {
-    if (user && user.length === 1) navigate('/');
-  }, [user, navigate]);
+    if (user?.length === 1) {
+      navigate('/');
+    }
+  }, [user]);
+  
 
   return (
     <div className="card bg-primary text-primary-content w-96 my-14 mb-40 ml-[35%]">

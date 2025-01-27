@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 const allowedOrigins = [
-    'https://your-production-frontend.com',
+    'https://devtinder-kroy.onrender.com',
     'http://localhost:5173' // Keep for local development
   ];
   

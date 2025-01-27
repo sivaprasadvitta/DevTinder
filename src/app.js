@@ -24,15 +24,21 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({
-    origin: "https://devtinder-kroy.onrender.com", // Frontend URL
-    credentials: true,              // Allows credentials (cookies, etc.)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'] // Allow necessary headers
-}));
-
-// Preflight requests (optional, ensures all routes handle CORS properly)
-app.options('*', cors()); 
+const allowedOrigins = [
+    'https://your-production-frontend.com',
+    'http://localhost:5173' // Keep for local development
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true
+  }));
 
 
 app.use('/',authRouter);

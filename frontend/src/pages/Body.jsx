@@ -37,15 +37,15 @@ function Body() {
 
   useEffect(()=>{
     fetchProfile()
-    if(userData.length == 0){
+    if(userData?.length == 0){
       navigate('/login')
     }
-  },[userData.length,navigate])
+  },[userData?.length,navigate])
 
   return (
     <div>
       <NavBar/>
-      {userData.length !=0 ? <Outlet/>:<Login/>}
+      {userData?.length !=0 ? <Outlet/>:<Login/>}
       <Footer/>
     </div>
   )

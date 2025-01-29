@@ -30,11 +30,12 @@ function Feed() {
       navigate('/login', { replace: true });
       return;
     }
-
+  
     if (user?.length > 0 && feed?.length === 0) {
       getFeed();
     }
-  }, [user, feed]);  // ✅ Add `user` & `feed` to avoid unnecessary calls
+  }, [token, feed?.length]);  // ✅ Depend only on `token` & `feed.length`
+  
 
   if (!feed || feed?.length === 0) {
     return <div className="flex justify-center mt-5 text-lg">No New User Found...</div>;

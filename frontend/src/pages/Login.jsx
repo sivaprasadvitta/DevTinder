@@ -78,10 +78,11 @@ function Login() {
   
   // ✅ Avoid infinite re-renders by properly handling dependencies
   useEffect(() => {
-    if (user?.length === 1) {
+    if (user?.length === 1 && window.location.pathname !== '/') {
       navigate('/', { replace: true }); 
     }
-  }, [user]);  // ✅ Only depend on `user`
+  }, [user?.length]);  // ✅ Depend only on `user.length`
+  
   
   
   

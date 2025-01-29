@@ -21,7 +21,7 @@ const validateSignUp = (user) => {
     }
 
     if(!validator.isStrongPassword(password)){
-        throw new Error(`Password is too weak`);
+        throw new Error(`Password is too weak.At least 1Capital,1Special Charecter`);
     }
     
 }

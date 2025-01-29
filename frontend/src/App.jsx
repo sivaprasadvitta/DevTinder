@@ -6,6 +6,10 @@ import Profile from './pages/profile';
 import Feed from './pages/Feed';
 import Connections from './pages/Connections';
 import RequestsRecived from './pages/RequestsRecived';
+import Otp from './pages/Otp';
+import Chat from './pages/Chat';
+
+
 // store
 import { Provider } from 'react-redux';
 import store, { persistor } from './utils/store';
@@ -23,6 +27,8 @@ function App() {
               <Route path="/profile" element={<Profile />} /> {/* Child-2 - Profile */}
               <Route path="/connections" element={<Connections/>} /> {/* Child-3 - who are already conectedConnections page */}
               <Route path="/requests" element={<RequestsRecived />} /> {/* Child-4 - requests  */}
+              <Route path='/otp' element={<Otp/>}/>
+              <Route path='/chat/:targetUserId' element={<Chat/>} />
             </Route>
           </Routes>
         </BrowserRouter>

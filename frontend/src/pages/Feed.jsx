@@ -10,39 +10,33 @@ import Cookies from 'js-cookie';
 function Feed() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state?.user); // Get user from state
-  const feed = useSelector((state) => state?.feed); // Get feed from state
+  const user = useSelector((state) => state?.user); 
+  const feed = useSelector((state) => state?.feed); 
 
-  // Retrieve the token from cookies
+  // Retrieve token once
   const token = Cookies.get('token');
 
-  // Fetch feed data from the server
   const getFeed = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/feed`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(`${BASE_URL}/feed`, { withCredentials: true });
       dispatch(addFeed(response.data));
     } catch (error) {
       console.error('Error fetching feed:', error.response?.data || error.message);
     }
   };
 
-  // Effect to check authentication and fetch feed
   useEffect(() => {
     if (!token) {
-      navigate('/login'); // Redirect to login if no token
+      navigate('/login', { replace: true });
       return;
     }
 
-    // Only fetch feed if user exists and is non-empty
-    if (user && user.length > 0) {
+    if (user?.length > 0 && feed?.length === 0) {
       getFeed();
     }
-  }, [token, navigate, user]);
+  }, [user, feed]);  // ✅ Add `user` & `feed` to avoid unnecessary calls
 
-  // Handle empty or undefined feed
-  if (!feed || feed.length === 0) {
+  if (!feed || feed?.length === 0) {
     return <div className="flex justify-center mt-5 text-lg">No New User Found...</div>;
   }
 

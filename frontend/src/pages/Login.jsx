@@ -17,7 +17,9 @@ function Login() {
   const lastName = useRef();
 
   const [isSignUp, setIsSignUp] = useState(false);
+  const [isOtp,setIsOtp] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading,setLoding] = useState(false);
 
   const handleSignUp = async () => {
     const firstNameValue = firstName.current.value;
@@ -31,6 +33,8 @@ function Login() {
     // console.log('Password:', passwordValue);
 
     try {
+      setLoding(true)
+
       const response = await axios.post(BASE_URL + "/signup", {
         firstName: firstNameValue,
         lastName: lastNameValue,
@@ -40,47 +44,48 @@ function Login() {
         withCredentials: true
       })
       console.log(response.data)
-      setIsSignUp(false)
+      // setIsSignUp(false)
+      setLoding(false)
+      navigate('/otp')
+
 
     } catch (error) {
+      setLoding(false)
       setErrorMessage(error?.response?.data || "Something Went Wrong");
     }
 
   }
 
   const handleLogin = async () => {
-    const emailValue = email.current.value; // || "siva11@gmail.com"
-    const passwordValue = password.current.value; // || "Siv@03123"
-    // console.log('Email:', emailValue);
-    // console.log('Password:', passwordValue);
-
+    const emailValue = email.current.value;
+    const passwordValue = password.current.value;
+  
     try {
       const response = await axios.post(BASE_URL + "/login",
-        {
-          email: emailValue,
-          password: passwordValue
-        }, {
-        withCredentials: true,
-      }
-      )
-      // console.log(response.data[0])
-      dispatch(addUser(response.data[0]))
-      navigate('/')
-
+        { email: emailValue, password: passwordValue },
+        { withCredentials: true }
+      );
+  
+      dispatch(addUser(response.data[0]));
+  
+      // Delay navigation slightly to ensure Redux state updates
+      setTimeout(() => navigate('/', { replace: true }), 100);
+  
     } catch (error) {
-      // console.log(error.response.data)
       setErrorMessage(error?.response?.data || "Something Went Wrong");
     }
-
   };
-
+  
+  // ✅ Avoid infinite re-renders by properly handling dependencies
   useEffect(() => {
     if (user?.length === 1) {
-      navigate('/');
+      navigate('/', { replace: true }); 
     }
-  }, [user]);
+  }, [user]);  // ✅ Only depend on `user`
   
-
+  
+  
+  if(loading) return <div className='flex justify-center mt-20'><span className="loading loading-dots loading-lg"></span></div>
   return (
     <div className="card bg-primary text-primary-content w-96 my-14 mb-40 ml-[35%]">
       <div className="card-body flex gap-7">

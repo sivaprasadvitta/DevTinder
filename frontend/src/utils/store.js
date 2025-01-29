@@ -10,7 +10,7 @@ import requestReducer from './requestSlice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'] // Persist only 'user' slice to avoid unnecessary re-renders
+  // whitelist: ['user'] // Persist only 'user' slice to avoid unnecessary re-renders
 };
 
 

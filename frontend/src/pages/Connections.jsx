@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { addConnections } from '../utils/connectionSlice';
@@ -8,16 +8,20 @@ import { Link } from 'react-router-dom';
 function Connections() {
     const dispatch = useDispatch();
     const connections = useSelector(store => store.connection);
+    const [loading,setLoding] =useState(false);
     // console.log(connections);
 
     const fetchConnections = async () => {
         if(connections) return;
         try {
+            setLoding(true);
             const response = await axios(BASE_URL + "/user/connections", {
                 withCredentials: true,
             });
+            setLoding(false)
             dispatch(addConnections(response.data.data));
         } catch (error) {
+            setLoding(false)
             console.log(error.message);
         }
     };
@@ -26,8 +30,8 @@ function Connections() {
         fetchConnections();
     }, []);
 
-    if (!connections) return <div className='flex justify-center mt-20'><span className="loading loading-dots loading-lg"></span></div>
-    if (connections.length === 0) return <div className='flex justify-center mt-5 text-lg'>No Connections Found</div>;
+    if(loading) return <div className='flex justify-center mt-20'><span className="loading loading-dots loading-lg"></span></div>
+    if(!connections) return <div className='flex justify-center mt-5 text-lg'>No Connections Found</div>;
 
     return (
         <div className='flex flex-col gap-5  mt-5 p-5 pb-60 '>

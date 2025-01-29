@@ -67,9 +67,13 @@ function Login() {
       );
   
       dispatch(addUser(response.data[0]));
-  
+      // console.log(user)
+      // if(user){
+      //   navigate('/')
+      // }
+      // navigate('/')
       // Delay navigation slightly to ensure Redux state updates
-      setTimeout(() => navigate('/', { replace: true }), 100);
+      setTimeout(() => navigate('/', { replace: true }), 400);
   
     } catch (error) {
       setErrorMessage(error?.response?.data || "Something Went Wrong");
@@ -83,6 +87,7 @@ function Login() {
     }
   }, [user?.length]);  // ✅ Depend only on `user.length`
   
+ 
   
   
   

@@ -11,6 +11,7 @@ function Connections() {
     // console.log(connections);
 
     const fetchConnections = async () => {
+        if(connections) return;
         try {
             const response = await axios(BASE_URL + "/user/connections", {
                 withCredentials: true,

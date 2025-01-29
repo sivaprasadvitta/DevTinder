@@ -26,7 +26,7 @@ function Feed() {
   };
 
   useEffect(() => {
-    if (!token) {
+    if (user?.length === 0) {
       navigate('/login', { replace: true });
       return;
     }
@@ -34,7 +34,7 @@ function Feed() {
     if (user?.length > 0 && feed?.length === 0) {
       getFeed();
     }
-  }, [token, feed?.length]);  // ✅ Depend only on `token` & `feed.length`
+  }, [token,user, feed?.length]);  // ✅ Depend only on `token` & `feed.length`
   
 
   if (!feed || feed?.length === 0) {

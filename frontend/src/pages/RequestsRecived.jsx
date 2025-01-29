@@ -12,6 +12,9 @@ function RequestsRecived() {
     const user = useSelector(store => store.user)
 
     const handleRequest = async (status, _id) => {
+        console.log("from req")
+        console.log(requests)
+        if(requests) return;
         try {
             const response = await axios.post(BASE_URL + "/request/review/" + status + "/" + _id,
                 {}, 
